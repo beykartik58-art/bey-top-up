@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BEY TOP-UP | MLBB Store</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#101322;color:white;font-family:Arial,sans-serif}
+header{background:#191f35;padding:22px;text-align:center;border-bottom:2px solid #765cff}
+header h1{color:#a994ff;margin:0}
+header p{color:#bbb}
+main{max-width:600px;margin:auto;padding:18px}
+.card{background:#1c2340;padding:18px;border-radius:14px;margin:15px 0}
+h2{font-size:19px}
+input,select{width:100%;padding:14px;margin:8px 0;background:#101629;color:white;border:1px solid #555;border-radius:8px}
+.packages{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.package{background:#292f50;padding:15px;border:2px solid transparent;border-radius:10px;text-align:center;cursor:pointer}
+.package.selected{border-color:#a994ff;background:#39305e}
+button{width:100%;padding:15px;background:#8265ff;color:white;border:0;border-radius:9px;font-weight:bold;margin-top:12px}
+.small{color:#aaa;font-size:12px}
+</style>
+</head>
+<body>
+<header>
+<h1>BEY TOP-UP</h1>
+<p>Mobile Legends: Bang Bang Diamond Store</p>
+</header>
+<main>
+<div class="card">
+<h2>🎮 Enter Player Details</h2>
+<input id="uid" placeholder="MLBB User ID">
+<input id="zone" placeholder="Zone ID">
+</div>
+<div class="card">
+<h2>💎 Select Diamond Package</h2>
+<div class="packages" id="packages">
+<div class="package" data-name="Weekly Diamond Pass" data-price="0">Weekly Pass<br>₹ Set price later</div>
+<div class="package" data-name="86 Diamonds" data-price="0">86 Diamonds<br>₹ Set price later</div>
+<div class="package" data-name="172 Diamonds" data-price="0">172 Diamonds<br>₹ Set price later</div>
+<div class="package" data-name="257 Diamonds" data-price="0">257 Diamonds<br>₹ Set price later</div>
+<div class="package" data-name="706 Diamonds" data-price="0">706 Diamonds<br>₹ Set price later</div>
+<div class="package" data-name="1412 Diamonds" data-price="0">1412 Diamonds<br>₹ Set price later</div>
+</div>
+</div>
+<div class="card">
+<h2>📦 Your Order</h2>
+<p id="selected">No package selected</p>
+<p>Payment: Confirm manually with seller</p>
+<button onclick="order()">Place Order on WhatsApp</button>
+<p class="small">This is a demo order page. No automatic payment or diamond delivery is active.</p>
+</div>
+</main>
+<script>
+let chosen=null;
+document.querySelectorAll('.package').forEach(p=>{
+p.onclick=()=>{
+document.querySelectorAll('.package').forEach(x=>x.classList.remove('selected'));
+p.classList.add('selected');
+chosen=p.dataset.name;
+document.getElementById('selected').innerText=chosen;
+};
+});
+function order(){
+let uid=document.getElementById('uid').value.trim();
+let zone=document.getElementById('zone').value.trim();
+if(!uid||!zone||!chosen){alert('Enter your Player ID, Zone ID and select a package');return;}
+let msg=`Hello BEY TOP-UP! I want to order ${chosen}. Player ID: ${uid}. Zone ID: ${zone}.`;
+window.open('https://wa.me/?text='+encodeURIComponent(msg),'_blank');
+}
+</script>
+</body>
+</html>
+￼Enter
